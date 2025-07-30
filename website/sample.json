@@ -1,0 +1,345 @@
+[
+    {"name": "Abacavir", "description": "Nucleoside reverse transcriptase inhibitor for HIV"},
+    {"name": "Abatacept", "description": "T-cell costimulation blocker for rheumatoid arthritis"}, 
+    {"name": "Abilify Maintena", "description": "Long-acting aripiprazole injection for schizophrenia"},
+    {"name": "Abiraterone", "description": "Androgen biosynthesis inhibitor for prostate cancer"}, 
+    {"name": "Acalabrutinib", "description": "Bruton tyrosine kinase inhibitor for blood cancers"},
+    {"name": "Acarbose", "description": "Alpha-glucosidase inhibitor for type 2 diabetes"},
+    {"name": "Accolate", "description": "Zafirlukast for asthma maintenance"},
+    {"name": "Accuneb", "description": "Albuterol sulfate inhalation solution"},
+    {"name": "Acebutolol", "description": "Cardioselective beta blocker for hypertension"},
+    {"name": "Acetadote", "description": "Acetylcysteine injection for acetaminophen overdose"}, 
+    {"name": "Aciphex", "description": "Rabeprazole proton pump inhibitor for GERD"},
+    {"name": "Actemra", "description": "Tocilizumab IL-6 inhibitor for arthritis and COVID-19"},
+    {"name": "Actiq", "description": "Fentanyl citrate lozenge for breakthrough cancer pain"},
+    {"name": "Acular", "description": "Ketorolac ophthalmic solution for eye inflammation"},
+    {"name": "Adagen", "description": "Pegademase bovine for severe combined immunodeficiency"},
+    {"name": "Adalat CC", "description": "Nifedipine calcium channel blocker for hypertension"},
+    {"name": "Adasuve", "description": "Loxapine inhaled powder for agitation in schizophrenia"},
+    {"name": "Adcirca", "description": "Tadalafil for pulmonary arterial hypertension"}, 
+    {"name": "Adderall", "description": "Amphetamine/dextroamphetamine for ADHD"},
+    {"name": "Adempas", "description": "Riociguat for chronic thromboembolic pulmonary hypertension"},
+    {"name": "Admelog", "description": "Insulin lispro injection for diabetes"},
+    {"name": "Adrenalin", "description": "Epinephrine for anaphylaxis and cardiac arrest"},
+    {"name": "Advagraf", "description": "Tacrolimus prolonged-release for transplant rejection"},
+    {"name": "Aerobid", "description": "Flunisolide inhaler for asthma"},
+    {"name": "Afinitor", "description": "Everolimus mTOR inhibitor for cancers and transplant"},
+    {"name": "Aggrenox", "description": "Aspirin/dipyridamole combo for stroke prevention"},
+    {"name": "Aklief", "description": "Trifarotene topical for acne vulgaris"},
+    {"name": "Akynzeo", "description": "Netupitant/palonosetron for chemotherapy nausea"},
+    {"name": "Alaway", "description": "Ketotifen ophthalmic for allergic conjunctivitis"},
+    {"name": "Albuked", "description": "Human albumin for hypovolemia and burns"}, 
+    {"name": "Aldactazide", "description": "Spironolactone/hydrochlorothiazide diuretic combo"},
+    {"name": "Alecensa", "description": "Alectinib for ALK-positive NSCLC"},
+    {"name": "Alentuzumab", "description": "CD52-directed monoclonal antibody for MS"},
+    {"name": "Alinia", "description": "Nitazoxanide antiparasitic for cryptosporidiosis"},
+    {"name": "Alkeran", "description": "Melphalan chemotherapy for multiple myeloma"},
+    {"name": "Allegra-D", "description": "Fexofenadine/pseudoephedrine for allergies + congestion"},
+    {"name": "Allernaze", "description": "Triamcinolone acetonide nasal spray"},
+    {"name": "Aloxi", "description": "Palonosetron for chemotherapy-induced nausea"},
+    {"name": "Alphagan P", "description": "Brimonidine eye drops for glaucoma"},
+    {"name": "Alunbrig", "description": "Brigatinib for ALK-positive metastatic NSCLC"},
+    {"name": "Alvesco", "description": "Ciclesonide inhaler for asthma maintenance"},
+    {"name": "Amerge", "description": "Naratriptan for migraine attacks"},
+    {"name": "Amjevita", "description": "Adalimumab-atto biosimilar for autoimmune diseases"},
+    {"name": "Ammonul", "description": "Sodium phenylacetate/sodium benzoate for urea cycle disorders"},
+    {"name": "Amoxil", "description": "Amoxicillin antibiotic capsule"},
+    {"name": "Amturnide", "description": "Aliskiren/amlodipine/HCTZ triple combo for hypertension"},
+    {"name": "Anaprox", "description": "Naproxen sodium NSAID for pain/inflammation"}, 
+    {"name": "Andexxa", "description": "Andexanet alfa for reversal of factor Xa inhibitors"},
+    {"name": "Anoro Ellipta", "description": "Umeclidinium/vilanterol LABA/LAMA for COPD"},
+    {"name": "Aptiom", "description": "Eslicarbazepine acetate for partial-onset seizures"},
+    {"name": "Aquasol A", "description": "Vitamin A palmitate supplement"},
+    {"name": "Aranesp", "description": "Darbepoetin alfa for anemia in chronic kidney disease"},
+    {"name": "Arava", "description": "Leflunomide DMARD for rheumatoid arthritis"},
+    {"name": "Arcalyst", "description": "Rilonacept for cryopyrin-associated periodic syndromes"},
+    {"name": "Arcapta Neohaler", "description": "Indacaterol long-acting beta agonist for COPD"},
+    {"name": "Aricept", "description": "Donepezil for Alzheimer's dementia"}, 
+    {"name": "Aristada", "description": "Aripiprazole lauroxil long-acting injectable"},
+    {"name": "Arixtra", "description": "Fondaparinux for DVT prophylaxis"},
+    {"name": "Armodafinil", "description": "Wakefulness-promoting agent for narcolepsy"},
+    {"name": "Arnity Ellipta", "description": "Fluticasone furoate/vilanterol for asthma"},
+    {"name": "Aromasin", "description": "Exemestane aromatase inhibitor for breast cancer"},
+    {"name": "Artane", "description": "Trihexyphenidyl for Parkinson's symptoms"},
+    {"name": "Asmanex", "description": "Mometasone inhaler for asthma maintenance"},
+    {"name": "Asparlas", "description": "Calaspargase pegol for acute lymphoblastic leukemia"}, 
+    {"name": "Astagraf XL", "description": "Tacrolimus extended-release for transplant"},
+    {"name": "Atacand", "description": "Candesartan ARB for hypertension"},
+    {"name": "Ativan", "description": "Lorazepam benzodiazepine for anxiety"},
+    {"name": "Atorvastatin", "description": "HMG-CoA reductase inhibitor (statin) for cholesterol"},
+    {"name": "Atralin", "description": "Tretinoin gel for acne vulgaris"},
+    {"name": "Atripla", "description": "Efavirenz/emtricitabine/tenofovir HIV combo"}, 
+    {"name": "Augmentin", "description": "Amoxicillin/clavulanate antibiotic"},
+    {"name": "Auryxia", "description": "Ferric citrate for hyperphosphatemia in CKD"},
+    {"name": "Austedo", "description": "Deutetrabenazine for tardive dyskinesia"},
+    {"name": "Avage", "description": "Tazarotene cream for acne and psoriasis"},
+    {"name": "Avalide", "description": "Irbesartan/HCTZ combo for hypertension"}, 
+    {"name": "Avandamet", "description": "Rosiglitazone/metformin for type 2 diabetes"},
+    {"name": "Avapro", "description": "Irbesartan ARB for hypertension"},
+    {"name": "Avastin", "description": "Bevacizumab VEGF inhibitor for cancers"},
+    {"name": "Avelox", "description": "Moxifloxacin fluoroquinolone antibiotic"},
+    {"name": "Avinza", "description": "Morphine sulfate extended-release for pain"}, 
+    {"name": "Avita", "description": "Tretinoin topical cream for acne"},
+    {"name": "Avodart", "description": "Dutasteride for benign prostatic hyperplasia"},
+    {"name": "Avonex", "description": "Interferon beta-1a for multiple sclerosis"},
+    {"name": "Axert", "description": "Almotriptan for acute migraine"},
+    {"name": "Axiron", "description": "Testosterone topical solution for hypogonadism"},
+    {"name": "Aygestin", "description": "Norethindrone for abnormal uterine bleeding"},
+    {"name": "Azactam", "description": "Aztreonam monobactam antibiotic"}, 
+    {"name": "Azasan", "description": "Azathioprine immunosuppressant"},
+    {"name": "Azelex", "description": "Azelaic acid cream for rosacea"},
+    {"name": "Azilect", "description": "Rasagiline for Parkinson's disease"},
+    {"name": "Azopt", "description": "Brinzolamide ophthalmic suspension for glaucoma"},
+    {"name": "Azyter", "description": "Azithromycin ophthalmic for bacterial conjunctivitis"},
+    {"name": "Acetohydroxamic Acid", "description": "Urease inhibitor for urinary stones"}, 
+    {"name": "Acular LS", "description": "Low-concentration ketorolac for eye inflammation"},
+    {"name": "Adapalene", "description": "Topical retinoid for acne"},
+    {"name": "Adhansia XR", "description": "Methylphenidate extended-release for ADHD"},
+    {"name": "Adjuvanted Flu Vaccine", "description": "Influenza vaccine with MF59 adjuvant"},
+    {"name": "Adynovate", "description": "Pegylated factor VIII for hemophilia A"},
+    {"name": "Akovaz", "description": "Epinephrine auto-injector for anaphylaxis"},
+    {"name": "Alaway", "description": "Ketotifen antihistamine eye drops"},
+    {"name": "Aldara", "description": "Imiquimod cream for actinic keratosis"},
+  {  
+    "name": "Abelcet",
+    "description": "Amphotericin B lipid complex for fungal infections"
+  },
+  {
+    "name": "Absorica",
+    "description": "Isotretinoin capsule for severe recalcitrant acne"
+  },
+  {
+    "name": "Acanya",
+    "description": "Benzoyl peroxide/clindamycin topical gel for acne"
+  },
+  {
+    "name": "Aceon",
+    "description": "Perindopril erbumine ACE inhibitor for hypertension"
+  },
+  {
+    "name": "Aciphex Sprinkle",
+    "description": "Rabeprazole delayed-release granules for GERD in children"
+  },
+  {
+    "name": "Actimmune",
+    "description": "Interferon gamma-1b for chronic granulomatous disease"
+  },
+  {
+    "name": "Adasuve",
+    "description": "Inhaled loxapine for acute agitation in schizophrenia"
+  },
+  {
+    "name": "Adcertris",
+    "description": "Brentuximab vedotin CD30-directed antibody for lymphomas"
+  },
+  {
+    "name": "Adhansia XR",
+    "description": "Methylphenidate extended-release for ADHD"
+  },
+  {
+    "name": "Adynovate",
+    "description": "Pegylated antihemophilic factor for hemophilia A"
+  },
+  {
+    "name": "Aemcolo",
+    "description": "Rifamycin SV MMX antibiotic for travelers' diarrhea"
+  },
+  {
+    "name": "Afinitor Disperz",
+    "description": "Everolimus oral suspension for tuberous sclerosis complex"
+  },
+  {
+    "name": "Aggrastat",
+    "description": "Tirofiban glycoprotein IIb/IIIa inhibitor for ACS"
+  },
+  {
+    "name": "Akynzeo",
+    "description": "Netupitant/palonosetron combo for CINV prevention"
+  },
+  {
+    "name": "Ala-Cort",
+    "description": "Hydrocortisone topical cream for inflammatory skin conditions"
+  },
+  {
+    "name": "Alinia",
+    "description": "Nitazoxanide antiparasitic for diarrhea caused by Cryptosporidium"
+  },
+  {
+    "name": "Aloxi",
+    "description": "Palonosetron 5-HT3 antagonist for chemotherapy nausea"
+  },
+  {
+    "name": "Alvesco",
+    "description": "Ciclesonide inhalation aerosol for persistent asthma"
+  },
+  {
+    "name": "AmBisome",
+    "description": "Liposomal amphotericin B for systemic fungal infections"
+  },
+  {
+    "name": "Ampyra",
+    "description": "Dalfampridine to improve walking in multiple sclerosis"
+  },
+  {
+    "name": "Anafranil",
+    "description": "Clomipramine tricyclic antidepressant for OCD"
+  },
+  {
+    "name": "Anatranil",
+    "description": "Chlordiazepoxide/clidinium combo for IBS"
+  },
+  {
+    "name": "Aplenzin",
+    "description": "Bupropion hydrobromide extended-release for depression"
+  },
+  {
+    "name": "Aristospan",
+    "description": "Triamcinolone hexacetonide intra-articular injection"
+  },
+  {
+    "name": "Arnuity Ellipta",
+    "description": "Fluticasone furoate inhaler for asthma maintenance"
+  },
+  {
+    "name": "Ascor",
+    "description": "High-dose vitamin C injection for scurvy treatment"
+  },
+  {
+    "name": "Asparlas",
+    "description": "Calaspargase pegol for acute lymphoblastic leukemia"
+  },
+  {
+    "name": "Astepro Allergy",
+    "description": "Azelastine nasal spray for allergic rhinitis"
+  },
+  {
+    "name": "Atacand HCT",
+    "description": "Candesartan/HCTZ combo for hypertension"
+  },
+  {
+    "name": "Athlon",
+    "description": "Testosterone undecanoate for male hypogonadism"
+  },
+  {
+    "name": "Atridox",
+    "description": "Doxycycline periodontal gel for gum disease"
+  },
+  {
+    "name": "Aubagio",
+    "description": "Teriflunomide oral disease-modifying therapy for MS"
+  },
+  {
+    "name": "Auryxia",
+    "description": "Ferric citrate oral phosphate binder for CKD"
+  },
+  {
+    "name": "Avar-E",
+    "description": "Sulfacetamide/sulfur topical for acne and rosacea"
+  },
+  {
+    "name": "Avelumab",
+    "description": "PD-L1 inhibitor immunotherapy for Merkel cell carcinoma"
+  },
+  {
+    "name": "Aviane",
+    "description": "Ethinyl estradiol/levonorgestrel oral contraceptive"
+  },
+  {
+    "name": "Avita",
+    "description": "Tretinoin emollient cream for acne vulgaris"
+  },
+  {
+    "name": "Avsola",
+    "description": "Infliximab-axxq biosimilar for autoimmune diseases"
+  },
+  {
+    "name": "Axid",
+    "description": "Nizatidine H2 blocker for GERD and ulcers"
+  },
+  {
+    "name": "Ayvakit",
+    "description": "Avapritinib tyrosine kinase inhibitor for GIST"
+  },
+  {
+    "name": "Azasan",
+    "description": "Azathioprine immunosuppressant for transplant rejection"
+  },
+  {
+    "name": "Azilect",
+    "description": "Rasagiline MAO-B inhibitor for Parkinson's disease"
+  },
+  {
+    "name": "Azopt",
+    "description": "Brinzolamide ophthalmic suspension for glaucoma"
+  },
+  {
+    "name": "Azyter",
+    "description": "Azithromycin ophthalmic solution for bacterial conjunctivitis"
+  },
+  {
+    "name": "Acetadote",
+    "description": "Acetylcysteine for acetaminophen overdose"
+  },
+  {
+    "name": "Acthar",
+    "description": "Adrenocorticotropic hormone gel for multiple sclerosis relapses"
+  },
+  {
+    "name": "Adynovate",
+    "description": "Pegylated factor VIII concentrate for hemophilia A"
+  },
+  {
+    "name": "Akovaz",
+    "description": "Epinephrine auto-injector for anaphylaxis emergencies"
+  },
+  {"name": "Abelcet", "description": "Lipid complex amphotericin B for fungal infections"},
+  {"name": "Abraxane", "description": "Albumin-bound paclitaxel chemotherapy"},
+  {"name": "Absorica LD", "description": "Isotretinoin for severe nodular acne"},
+  {"name": "Accretropin", "description": "Somatropin growth hormone therapy"},
+  {"name": "Aceon", "description": "Perindopril erbumine ACE inhibitor"},
+  {"name": "AcipHex Sprinkle", "description": "Rabeprazole delayed-release granules"},
+  {"name": "Actikerall", "description": "Fluorouracil/salicylic acid topical for actinic keratosis"},
+  {"name": "Actisite", "description": "Tetracycline periodontal fiber"},
+  {"name": "Adcirca", "description": "Tadalafil for pulmonary hypertension"},
+  {"name": "Admelog", "description": "Insulin lispro rapid-acting analog"},
+  {"name": "Adrucil", "description": "Fluorouracil IV chemotherapy"},
+  {"name": "Advicor", "description": "Lovastatin/niacin combo for cholesterol"},
+  {"name": "Aemcolo", "description": "Rifamycin SV MMX antibiotic"},
+  {"name": "AfEDITORa", "description": "Ethinyl estradiol/norgestimate oral contraceptive"}, 
+  {"name": "Afinitor Disperz", "description": "Everolimus oral suspension"},
+  {"name": "Agenerase", "description": "Amprenavir HIV protease inhibitor"},
+  {"name": "Aggrenox", "description": "Aspirin/dipyridamole antiplatelet combo"},
+  {"name": "Akebia", "description": "Vadadustat oral HIF-PH inhibitor for anemia"},
+  {"name": "Akynzeo", "description": "Netupitant/palonosetron antiemetic"},
+  {"name": "Alamast", "description": "Pemirolast ophthalmic for allergic conjunctivitis"},
+  {"name": "Alaway", "description": "Ketotifen antihistamine eye drops"},
+  {"name": "Aldara", "description": "Imiquimod immune response modifier cream"},
+  {"name": "Aldoril", "description": "Methyldopa/hydrochlorothiazide combo"},
+  {"name": "Allegra ODT", "description": "Fexofenadine orally disintegrating tablet"},
+  {"name": "Alli", "description": "Orlistat OTC weight loss aid"},
+  {"name": "Aloxi", "description": "Palonosetron 5-HT3 receptor antagonist"},
+  {"name": "Alphanate", "description": "Antihemophilic factor VIII concentrate"},
+  {"name": "Alvesco", "description": "Ciclesonide inhaler corticosteroid"},
+  {"name": "Amerge", "description": "Naratriptan serotonin receptor agonist"},
+  {"name": "AmBisome", "description": "Liposomal amphotericin B antifungal"},
+  {"name": "Amevive", "description": "Alefacept immunomodulator for psoriasis"},
+  {"name": "Aminosalicylic Acid", "description": "TB second-line treatment"},
+  {"name": "Ampyra", "description": "Dalfampridine for MS walking impairment"},
+  {"name": "Anafranil", "description": "Clomipramine TCA for OCD"},
+  {"name": "Anaspaz", "description": "Hyoscyamine antispasmodic"},
+  {"name": "Androderm", "description": "Testosterone transdermal patch"},  
+  {"name": "Angiomax", "description": "Bivalirudin anticoagulant"},
+  {"name": "Ansaid", "description": "Flurbiprofen NSAID"},
+  {"name": "Antabuse", "description": "Disulfiram alcohol deterrent"},
+  {"name": "Apokyn", "description": "Apomorphine dopamine agonist injection"},
+  {"name": "Aptiom", "description": "Eslicarbazepine acetate anticonvulsant"},
+  {"name": "Aralast", "description": "Alpha1-proteinase inhibitor"},
+  {"name": "Arcapta", "description": "Indacaterol LABA bronchodilator"},
+  {"name": "Aricept", "description": "Donepezil cholinesterase inhibitor"},    
+  {"name": "Aristada", "description": "Aripiprazole lauroxil LAI antipsychotic"},
+  {"name": "Arixtra", "description": "Fondaparinux anticoagulant"},
+  {"name": "ArmonAir", "description": "Fluticasone propionate inhaler"},
+  {"name": "Arnuity", "description": "Fluticasone furoate inhaler"},
+  {"name": "Aromasin", "description": "Exemestane aromatase inhibitor"}
+  ]
+  

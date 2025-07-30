@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pill Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f5f5f5;
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .card {
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-radius: 10px;
+        }
+        
+        .card-header {
+            background-color: #4a90e2;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        
+        .taken {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        .missed {
+            background-color: #f44336;
+            color: white;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #f8f9fa;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 20px;
+            font-size: 1.2em;
+        }
+        
+        .back-button {
+            margin-bottom: 20px;
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="back-button" onclick="window.history.back()">← Back</button>
+        
+        <div class="row">
+            <!-- Medication Details -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        Medication Schedule
+                    </div>
+                    <div class="card-body">
+                        <div id="loadingMedications" class="loading">Loading medications...</div>
+                        <table id="medicationsTable" style="display: none;">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Time</th>
+                                    <th>Dose</th>
+                                    <th>Remaining</th>
+                                    <th>Created</th>
+                                </tr>
+                            </thead>
+                            <tbody id="medicationsBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Attendance Records -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        Consumption History
+                    </div>
+                    <div class="card-body">
+                        <div id="loadingAttendance" class="loading">Loading attendance...</div>
+                        <table id="attendanceTable" style="display: none;">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Pill A</th>
+                                    <th>Pill B</th>
+                                </tr>
+                            </thead>
+                            <tbody id="attendanceBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Fetch medications data
+        async function fetchMedications() {
+            try {
+                const response = await fetch('http://localhost:5000/api/medications');
+                const data = await response.json();
+                
+                document.getElementById('loadingMedications').style.display = 'none';
+                document.getElementById('medicationsTable').style.display = 'table';
+                
+                const tbody = document.getElementById('medicationsBody');
+                tbody.innerHTML = data.map(med => `
+                    <tr>
+                        <td>${med.name}</td>
+                        <td>${med.time}</td>
+                        <td>${med.quantity}</td>
+                        <td>${med.cnt_b}</td>
+                        <td>${new Date(med.created_at).toLocaleDateString()}</td>
+                    </tr>
+                `).join('');
+            } catch (error) {
+                document.getElementById('loadingMedications').innerHTML = 
+                    'Error loading medication data';
+                console.error('Medications error:', error);
+            }
+        }
+
+        // Fetch attendance data
+        async function fetchAttendance() {
+            try {
+                const response = await fetch('http://localhost:5000/api/attendance');
+                const data = await response.json();
+                
+                document.getElementById('loadingAttendance').style.display = 'none';
+                document.getElementById('attendanceTable').style.display = 'table';
+                
+                const tbody = document.getElementById('attendanceBody');
+                tbody.innerHTML = data.map(record => `
+                    <tr>
+                        <td>${new Date(record.recorded_date).toLocaleDateString()}</td>
+                        <td>
+                            <span class="status-indicator ${record.pill_a ? 'taken' : 'missed'}">
+                                ${record.pill_a ? 'Taken' : 'Missed'}
+                            </span>
+                        </td>
+                        <td>
+                            <span class="status-indicator ${record.pill_b ? 'taken' : 'missed'}">
+                                ${record.pill_b ? 'Taken' : 'Missed'}
+                            </span>
+                        </td>
+                    </tr>
+                `).join('');
+            } catch (error) {
+                document.getElementById('loadingAttendance').innerHTML = 
+                    'Error loading attendance data';
+                console.error('Attendance error:', error);
+            }
+        }
+
+        // Initial load
+        window.addEventListener('DOMContentLoaded', () => {
+            fetchMedications();
+            fetchAttendance();
+        });
+    </script>
+</body>
+</html>

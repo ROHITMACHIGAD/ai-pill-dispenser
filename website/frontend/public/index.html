@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pill Reminder App</title>
+    <script>
+        // Enhanced greeting function with browser compatibility checks
+        function speakGreeting() {
+            // Check browser support
+            if ('speechSynthesis' in window) {
+                const synth = window.speechSynthesis;
+                const utterance = new SpeechSynthesisUtterance("Welcome to the Pill Reminder Application!");
+                
+                // Configure voice settings
+                utterance.volume = 1;    // 0-1
+                utterance.rate = 1;     // 0.1-10
+                utterance.pitch = 1;    // 0-2
+                
+                // Find a suitable voice
+                const voices = synth.getVoices();
+                const preferredVoice = voices.find(voice => 
+                    voice.lang === 'en-US' && voice.name.includes('Google')
+                );
+                
+                if (preferredVoice) {
+                    utterance.voice = preferredVoice;
+                }
+
+                // Speak the greeting
+                synth.speak(utterance);
+            } else {
+                console.log("Text-to-speech not supported in this browser");
+            }
+        }
+
+        // Initialize on page load
+        window.onload = function() {
+            speakGreeting();
+            
+            // Add event listener for page refresh
+            window.addEventListener('beforeunload', function() {
+                if (window.speechSynthesis) {
+                    window.speechSynthesis.cancel();
+                }
+            });
+        };
+    </script>
+</head>
+<body>
+   
+    <div id="root"></div>
+</body>
+</html>

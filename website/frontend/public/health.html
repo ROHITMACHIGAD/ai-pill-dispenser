@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Health Report Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pg@8.7.3/dist/pg.min.js"></script>
+    <style>
+       :root {
+    --danger-color: #e74c3c;
+    --secondary-color: #3498db;
+    --primary-color: #2c3e50;
+}
+
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+
+        .dashboard {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .chart-container {
+            height: 400px;
+            position: relative;
+            margin: 25px 0;
+        }
+
+        .summary {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .summary-item {
+            flex: 1;
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 10px;
+            min-width: 200px;
+        }
+
+        h1, h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .alert {
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .alert-info {
+            background-color: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .back-button {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        padding: 10px 20px;
+        background-color: var(--secondary-color);
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-decoration: none;
+        font-size: 14px;
+    }
+    
+    .back-button:hover {
+        background-color: #2980b9;
+    }
+    </style>
+</head>
+<body>
+    <center><a href="http://localhost:3000" class="back-button">← Back to Main</a></center> 
+    <div class="dashboard">
+        <h1>Patient Health Report</h1>
+        
+        <div class="summary">
+            <div class="summary-item">
+                <h3>Average Heart Rate</h3>
+                <p id="avgBpm">Calculating...</p>
+            </div>
+            <div class="summary-item">
+                <h3>Total Medication Taken</h3>
+                <p id="totalMeds">Loading...</p>
+            </div>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <h2>Heart Rate Trends</h2>
+                <div class="chart-container">
+                    <canvas id="bpmChart"></canvas>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Medication Compliance</h2>
+                <div class="chart-container">
+                    <canvas id="medsChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Health Analysis</h2>
+            <div id="healthAnalysis" class="alert alert-info">
+                Generating insights...
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let bpmChart = null;
+        let medsChart = null;
+          // Remove direct PG configuration
+          function processHealthData(bpmData, medData) {
+    // Process BPM data
+    const bpmValues = bpmData.map(r => r.bpm);
+    const bpmDates = bpmData.map(r => new Date(r.recorded_at).toLocaleDateString());
+
+    // Process medication data
+    const medDates = medData.map(r => new Date(r.recorded_date).toLocaleDateString());
+    const pillA = medData.map(r => r.pill_a);
+    const pillB = medData.map(r => r.pill_b);
+
+    // Update metrics
+    document.getElementById('avgBpm').textContent = 
+        getAverage(bpmValues).toFixed(1) + ' BPM';
+
+    document.getElementById('totalMeds').textContent = 
+        (pillA.reduce(sum) + pillB.reduce(sum)) + ' Pills';
+
+    // Generate visualizations
+    createBPMChart(bpmDates, bpmValues);
+    createMedsChart(medDates, pillA, pillB);
+    generateHealthAnalysis(bpmData, medData);
+}
+
+// Add helper functions
+
+
+// Update error handling in fetchHealthData
+async function fetchHealthData() {
+    try {
+        const apiBase = 'http://localhost:5000';
+        const [bpmRes, medRes] = await Promise.all([
+            fetch(`${apiBase}/api/bpm`),
+            fetch(`${apiBase}/api/attendance`)
+        ]);
+
+        if (!bpmRes.ok) {
+            const errorText = await bpmRes.text();
+            throw new Error(`BPM API Error (${bpmRes.status}): ${errorText}`);
+        }
+        if (!medRes.ok) {
+            const errorText = await medRes.text();
+            throw new Error(`Medication API Error (${medRes.status}): ${errorText}`);
+        }
+
+        const bpmData = await bpmRes.json();
+        const medData = await medRes.json();
+
+        processHealthData(bpmData, medData);
+
+    } catch (error) {
+        console.error('Health data error:', error);
+        showError(`Failed to load health data: ${error.message}`);
+    }
+}
+    // Update chart creation functions
+    function createBPMChart(dates, values) {
+    const ctx = document.getElementById('bpmChart').getContext('2d');
+    const rootStyles = getComputedStyle(document.documentElement);
+    const dangerColor = rootStyles.getPropertyValue('--danger-color');
+
+    // Destroy existing chart if it exists
+    if (bpmChart) {
+        bpmChart.destroy();
+    }
+
+    bpmChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: dates,
+            datasets: [{
+                label: 'Heart Rate (BPM)',
+                data: values,
+                borderColor: dangerColor,
+                tension: 0.4,
+                fill: false
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    title: { 
+                        text: 'BPM', 
+                        display: true 
+                    }
+                }
+            }
+        }
+    });
+}
+
+function createMedsChart(dates, pillA, pillB) {
+    const ctx = document.getElementById('medsChart').getContext('2d');
+    const rootStyles = getComputedStyle(document.documentElement);
+    const secondaryColor = rootStyles.getPropertyValue('--secondary-color');
+
+    // Destroy existing chart if it exists
+    if (medsChart) {
+        medsChart.destroy();
+    }
+
+    medsChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: dates,
+            datasets: [{
+                label: 'Pill A',
+                data: pillA,
+                backgroundColor: secondaryColor
+            }, {
+                label: 'Pill B',
+                data: pillB,
+                backgroundColor: '#2ecc71'
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: { stacked: true },
+                y: { 
+                    stacked: true,
+                    title: { 
+                        text: 'Pills Taken', 
+                        display: true 
+                    }
+                }
+            }
+        }
+    });
+}
+
+// Add these helper functions if missing
+const sum = (a, b) => a + b;
+const getAverage = arr => arr.length > 0 ? arr.reduce(sum, 0) / arr.length : 0;
+
+        function generateHealthAnalysis(bpmData, medData) {
+            const analysisElement = document.getElementById('healthAnalysis');
+            const avgBpm = getAverage(bpmData.map(d => d.bpm));
+            const totalMeds = medData.reduce((sum, d) => sum + d.pill_a + d.pill_b, 0);
+            const missedDoses = medData.filter(d => d.pill_a === 0 || d.pill_b === 0).length;
+
+            const insights = [
+                `Average resting heart rate: ${avgBpm.toFixed(1)} BPM (${
+                    avgBpm > 100 ? 'Elevated' : 'Normal'})`,
+                `Total medication adherence: ${(
+                    (medData.length - missedDoses)/medData.length * 100).toFixed(1)}%`,
+                `${missedDoses} missed doses detected`
+            ];
+
+            analysisElement.innerHTML = `
+                <h3>Key Insights</h3>
+                <ul>${insights.map(i => `<li>${i}</li>`).join('')}</ul>
+                ${generateRecommendations(avgBpm, missedDoses)}
+            `;
+        }
+
+        function generateRecommendations(avgBpm, missedDoses) {
+            const recs = [];
+            if(avgBpm > 100) recs.push('Consider consulting a cardiologist');
+            if(missedDoses > 2) recs.push('Improve medication consistency');
+            
+            return recs.length > 0 
+                ? `<h3>Recommendations</h3><ul>${
+                    recs.map(r => `<li>${r}</li>`).join('')}</ul>`
+                : '<p>No critical health concerns detected</p>';
+        }
+
+        // Helper functions
+    
+
+        function showError(message) {
+            const analysisDiv = document.getElementById('healthAnalysis');
+            analysisDiv.innerHTML = `<div class="alert-error">${message}</div>`;
+        }
+
+        // Initialize dashboard
+        window.onload = fetchHealthData;
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+.voice-interface {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  button {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+    background: linear-gradient(135deg, #4f46e5 0%, #9333ea 100%);
+    color: white;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  .transcript {
+    margin: 1rem 0;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 5px;
+  }
+  
+  .app-title {
+    text-align: center;
+    background: linear-gradient(135deg, #4f46e5 0%, #9333ea 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 2.5rem;
+    margin: 1rem 0 2rem 0;
+    letter-spacing: -0.5px;
+    font-weight: 800;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  @media (max-width: 480px) {
+    .app-title {
+      font-size: 2rem;
+      margin: 0.5rem 0 1.5rem 0;
+    }
+  }

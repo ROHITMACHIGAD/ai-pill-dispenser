@@ -1,0 +1,270 @@
+/* Voice Interface - Modern Aesthetic */
+
+.voice-interface {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 70vh;
+  justify-content: center;
+  text-align: center;
+}
+
+
+
+/* Responsive Base */
+@media (max-width: 768px) {
+  .voice-interface {
+    margin: 1rem;
+    padding: 1.5rem;
+    border-radius: 15px;
+  }
+}
+
+/* Interactive Elements */
+button {
+  background-color: linear-gradient(135deg, #4f46e5 0%, #9333ea 100%);
+  color: white;
+  padding: 1.5rem 3rem !important;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1.2rem !important;
+  min-width: 250px;
+  font-weight: 500;
+  transition: all 0.3s ease, transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1.5rem 0;
+  gap: 0.5rem;
+}
+
+button:hover {
+  transform: scale(1.05) translateY(-2px);
+}
+
+button:active {
+  transform: scale(0.98);
+}
+/* Recording States */
+button.recording {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* Status Display */
+.status {
+  width: 100%;
+  max-width: 480px;
+  margin: 1.5rem auto;
+}
+
+.transcript {
+  color: #1f2937;
+  font-size: 1.1rem;
+  margin: 1rem 0;
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+.instruction {
+  color: #3b82f6;
+  font-weight: 600;
+  letter-spacing: -0.25px;
+}
+
+.welcome {
+  color: #10b981;
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+/* Enhanced Hamburger Menu */
+.hamburger-menu {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  background: #ffffff;
+ 
+  
+  transition: all 0.3s ease;
+}
+.menu-button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4f46e5;
+  width: 40px;
+  height: 40px;
+  transition: all 0.3s ease;
+}
+
+.menu-button:hover {
+  background: rgba(79,70,229,0.1);
+  transform: scale(1.1); /* Changed from rotation */
+}
+
+.menu-content {
+  position: absolute;
+  right: 0;
+  top: 50px;
+  background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%);
+  border-radius: 12px;
+  padding: 1rem 0;
+  min-width: 240px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* Increased gap between items */
+}
+
+.menu-item {
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #4f46e5 0%, #9333ea 100%);
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  text-align: left;
+  margin: 0 12px; /* Added horizontal margin */
+  border-radius: 8px; /* Added consistent border radius */
+}
+
+.menu-item:hover {
+  background: rgba(79,70,229,0.15);
+  transform: translateX(5px);
+}
+/* Voice Selection Options */
+.submenu {
+  padding: 0 16px;
+}
+
+.voice-option {
+  padding: 0.75rem;
+  margin: 0.5rem 0;
+  background: linear-gradient(135deg, #4f46e5 0%, #9333ea 100%);
+  border: 1px solid rgba(209,213,219,0.3);
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+
+.voice-option:hover {
+  background: rgba(79,70,229,0.1);
+  border-color: rgba(79,70,229,0.2);
+}
+
+/* Responsive Typography */
+@media (max-width: 640px) {
+  .status {
+    max-width: 95%;
+    padding: 1rem;
+  }
+  
+  button {
+    background: linear-gradient(135deg, #4f46e5 0%, #9333ea 100%);
+    margin: 0 auto;
+   
+  }
+  
+  .transcript {
+    font-size: 1rem;
+  }
+}
+
+/* Loading Animation */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.loading-shimmer {
+  background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+
+
+@media (max-width: 480px) {
+  .menu-content {
+    right: 10px;
+    min-width: 200px;
+  }
+  
+  .menu-item {
+    padding: 14px 20px;
+    font-size: 15px;
+  }
+  
+  .voice-interface {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hamburger-menu {
+    top: 15px;
+    right: 15px;
+  }
+
+  .menu-button {
+    width: 48px;
+    height: 48px;
+    font-size: 2rem;
+  }
+
+  .menu-content {
+    top: 60px;
+    min-width: 280px;
+    right: 10px;
+    padding: 1.2rem 0;
+  }
+
+  .menu-item {
+    padding: 16px 24px;
+    font-size: 16px;
+    margin: 6px 0;
+    border-radius: 12px;
+  }
+
+  .submenu h4 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+
+  .voice-option {
+    padding: 1rem;
+    font-size: 0.95rem;
+    margin: 0.8rem 0;
+  }
+
+  .status {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    font-size: 1.1rem;
+  }
+
+  button.recording {
+    font-size: 1.2rem;
+  }
+}
+
+/* Title Sizing */
+.app-title {
+  font-size: 2.2rem;
+  margin: 2rem 0;
+}

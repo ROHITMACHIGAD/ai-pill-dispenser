@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical FAQ Assistant</title>
+    <link rel="stylesheet" href="./interactive.css">
+</head>
+<body>
+    
+    <div class="container">
+        <h1>Pill FAQ Assistant</h1>
+        <button id="startBtn" disabled>Loading Dataset...</button>
+        <div id="status">Status: Initializing</div>
+        <div id="result"></div>
+    </div>
+    <script>
+        // Configuration
+        const DEEPGRAM_API_KEY = '878dfc07f09595e0a19fc9fad737aaea68900a49';
+        const STT_ENDPOINT = 'https://api.deepgram.com/v1/listen?model=nova-2-general';
+        
+        // Global state
+        let medicalMap = new Map();
+        let isRecording = false;
+        let mediaRecorder;
+        let audioChunks = [];
+        let synth = window.speechSynthesis;
+        let isDatasetReady = false;
+    
+        // DOM Elements
+        const startBtn = document.getElementById('startBtn');
+        const statusDiv = document.getElementById('status');
+        const resultDiv = document.getElementById('result');
+    
+        // 1. Dataset Loading & Preprocessing (O(n) - one time)
+        (async function init() {
+        try {
+            statusDiv.textContent = 'Loading medical dataset...';
+            
+            const response = await fetch('dataset.json');
+            const data = await response.json();
+            
+            const startTime = performance.now();
+            
+            if (Array.isArray(data)) {
+                // Handle array format
+                data.forEach(item => {
+                    medicalMap.set(normalizeKey(item.key), item.value);
+                });
+            } else if (typeof data === 'object') {
+                // Handle direct key-value object format
+                Object.entries(data).forEach(([key, value]) => {
+                    medicalMap.set(normalizeKey(key), value);
+                });
+            } else {
+                throw new Error('Invalid dataset format');
+            }
+            
+            console.log(`Dataset loaded in ${performance.now() - startTime}ms`);
+            isDatasetReady = true;
+            startBtn.disabled = false;
+            statusDiv.textContent = 'Status: Ready';
+        } catch (error) {
+            console.error('Initialization error:', error);
+            statusDiv.textContent = 'Failed to load dataset';
+        }
+    })();
+    
+        // 2. Normalization Function (Optimized)
+        function normalizeKey(key) {
+            return key.toLowerCase().trim().replace(/\s+/g, ' ');
+        }
+    
+        // 3. Answer Lookup (O(1) time complexity)
+        function getMedicalAnswer(question) {
+            return medicalMap.get(normalizeKey(question));
+        }
+    
+        // 4. Optimized Speech Synthesis
+        const ttsQueue = [];
+        let isSpeaking = false;
+        
+        async function textToSpeech(text) {
+            return new Promise((resolve) => {
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.voice = synth.getVoices().find(v => v.lang === 'en-US') || synth.getVoices()[0];
+                utterance.onend = () => {
+                    isSpeaking = false;
+                    processTtsQueue();
+                    resolve();
+                };
+                
+                if (isSpeaking) {
+                    ttsQueue.push(utterance);
+                } else {
+                    isSpeaking = true;
+                    synth.speak(utterance);
+                }
+            });
+        }
+    
+        function processTtsQueue() {
+            if (ttsQueue.length > 0 && !isSpeaking) {
+                isSpeaking = true;
+                synth.speak(ttsQueue.shift());
+            }
+        }
+    
+        // 5. Optimized Deepgram STT
+        async function transcribeAudio(audioBlob) {
+            try {
+                const response = await fetch(STT_ENDPOINT, {
+                    method: 'POST',
+                    headers: { 'Authorization': `Token ${DEEPGRAM_API_KEY}` },
+                    body: audioBlob
+                });
+    
+                if (!response.ok) throw new Error(`STT Error: ${response.status}`);
+                
+                const data = await response.json();
+                return data.results.channels[0].alternatives[0].transcript;
+            } catch (error) {
+                console.error('STT Error:', error);
+                return null;
+            }
+        }
+    
+        // 6. Recording Handler
+        startBtn.addEventListener('click', async () => {
+            if (!isDatasetReady) {
+                alert('Medical dataset not loaded yet');
+                return;
+            }
+    
+            if (!isRecording) {
+                try {
+                    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                    mediaRecorder = new MediaRecorder(stream);
+                    audioChunks = [];
+                    
+                    mediaRecorder.ondataavailable = e => audioChunks.push(e.data);
+                    
+                    mediaRecorder.onstop = async () => {
+                        const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+                        statusDiv.textContent = 'Processing...';
+                        
+                        const transcript = await transcribeAudio(audioBlob);
+                        if (transcript) {
+                            const question = transcript;
+                            resultDiv.innerHTML = `<strong>Question:</strong> ${question}`;
+                            
+                            const startLookup = performance.now();
+                            const answer = getMedicalAnswer(question);
+                            console.log(`Lookup time: ${performance.now() - startLookup}ms`);
+                            
+                            if (answer) {
+                                resultDiv.innerHTML += `<br><strong>Answer:</strong> ${answer}`;
+                                await textToSpeech(answer);
+                            } else {
+                                const notFoundMsg = "Sorry, I couldn't find information on that topic.";
+                                resultDiv.innerHTML += `<br>${notFoundMsg}`;
+                                await textToSpeech(notFoundMsg);
+                            }
+                        }
+                        statusDiv.textContent = 'Status: Ready';
+                    };
+    
+                    mediaRecorder.start();
+                    isRecording = true;
+                    startBtn.textContent = 'Stop Recording';
+                    statusDiv.textContent = 'Status: Recording...';
+                } catch (error) {
+                    console.error('Recording error:', error);
+                    statusDiv.textContent = 'Microphone access denied';
+                }
+            } else {
+                mediaRecorder.stop();
+                isRecording = false;
+                startBtn.textContent = 'Start Recording';
+                if (synth.speaking) synth.cancel();
+            }
+        });
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,166 @@
+/* Medical FAQ Assistant - Modern Interface */
+
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 10px 20px;
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.back-button:hover {
+    background-color: #2980b9;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    background: linear-gradient(135deg, #f8f9fc 0%, #f1f5f9 100%);
+    min-height: 100vh;
+  }
+  
+  .container {
+    background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+    padding: 2.5rem;
+    border-radius: 1.5rem;
+    box-shadow: 0 8px 32px rgba(0,79,255,0.06);
+    border: 1px solid rgba(203,213,225,0.3);
+    backdrop-filter: blur(12px);
+  }
+  
+  h1 {
+    color: #1e3a8a;
+    font-size: 2.4rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+  }
+  
+  /* Enhanced Button Styles */
+  button {
+    background: linear-gradient(135deg, #4f46e5 0%, #9333ea 100%);
+    color: white;
+    border: none;
+    padding: 1.2rem 2.5rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 6px -1px rgba(59,130,246,0.15);
+    display: block;
+    margin: 1.5rem auto;
+    width: fit-content;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px -2px rgba(59,130,246,0.25);
+  }
+  
+  button:active {
+    transform: translateY(1px);
+  }
+  
+  button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    background: linear-gradient(135deg, #4f46e5 0%, #9333ea 100%);
+  }
+  
+  /* Status Indicators */
+  #status {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background: rgba(241,245,249,0.8);
+    border-radius: 0.75rem;
+    font-weight: 500;
+    color: #334155;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+  
+  #status::before {
+    content: "•";
+    margin-right: 0.5rem;
+    color: #3b82f6;
+  }
+  
+  /* Result Display */
+  #result {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+    border-radius: 1rem;
+    border: 1px solid rgba(203,213,225,0.3);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+  }
+  
+  #result strong {
+    color: #1e3a8a;
+    font-weight: 600;
+  }
+  
+  /* Recording State */
+  button.recording {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+  
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .container {
+      padding: 1.5rem;
+      margin: 1rem;
+    }
+  
+    h1 {
+      font-size: 1.8rem;
+    }
+  
+    button {
+      width: 100%;
+      padding: 1rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    body {
+      padding: 0 0.5rem;
+    }
+  
+    #result {
+      padding: 1rem;
+      font-size: 0.95rem;
+    }
+  }
+  
+  /* Loading Animation */
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  
+  .loading-shimmer {
+    background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite linear;
+    border-radius: 0.5rem;
+  }
+  
